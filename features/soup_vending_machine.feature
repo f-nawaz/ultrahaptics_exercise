@@ -34,7 +34,7 @@ Feature: dispensing of the soup
      Then the machine initiates the dispensing of the soup
 
 @SVM-05
-Feature: Changing the soup flavour, cup colour and amount of soup
+Feature: editing choice
     Scenario: Changing the flavour from the amount of soup page
      Given that I am on the amount of soup page
      When I press the back button from the amount of soup page
@@ -42,6 +42,14 @@ Feature: Changing the soup flavour, cup colour and amount of soup
      When I select a new flavour
      Then the machine overrides the previous flavour
      And I am navigated to the amount of soup page
+
+    Scenario: Changing cup colour from the dispensing page
+     Given that I am on the dispensing page
+     When I press the back button from the dispensing page
+     Then I am nagivated back to the cup colour page
+     When I select a new cup colour
+     Then the machine overrides the previous cup colour
+     And I am nagivated to the dispensing page
 
 @SVM-06
 Feature: Displaying promotional message for the day
@@ -53,4 +61,8 @@ Feature: Displaying promotional message for the day
 
 @SVM-07
 Feature: Displaying a message when the soup is ready
-    Scenario:
+    Scenario: displaying the ready message when the soup is ready
+     Given that the dispense button has been pressed from the dispensing page
+     When the soup has finished dispensing
+     Then a message saying "Soup is ready" is displayed
+     And after a set of time the initial menu is available
